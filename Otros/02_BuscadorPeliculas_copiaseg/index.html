@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/principal.css">
+    <title>BuscaMovies</title>
+</head>
+
+<body onload=CargarArrayBusqueda()>
+    <header class="cabecera contenedor">
+        <div class="mivideo">
+            <video class="video" src="video/cabeceras.mp4" autoplay="true" loop="true" muted="muted"></video>
+        </div>
+        <div class="cab_cortina"></div>
+        <div class="cab_contenedor">
+            <div id="buscar_contenedor" class="buscar_contenedor align-self-center">
+                <h1>Busca la mejor información de películas y series.</h1>
+                <input id="peliABuscar" name="peliABuscar" required="required" placeholder="Buscar pelicula o serie"
+                    autocapitalize="none" type="search" onkeypress="PulsarIntro(event)">
+                <input id="botonbuscar" class="botonbuscar" value=" " type="submit" onclick="cargarBusqueda('s=')">
+                <div class="contenedor_sugerencias">
+                    <p id="sugerencias"> Sugerencias: Vengadores, Capitana Marvel, Spider-Man, Aladin, Dumbo, Star Wars,
+                        más</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="contenedor_pelis" class="contenedor_pelis">
+        <h2 id="ultimas_busquedas"></h2>    
+        <div id="ficha_pelis" class="ficha_pelis"></div>
+        <div id="fihapelis_pie" class="fichapelis_pie">
+            <div class="row">
+                <div class="col-sm">   
+                </div>
+                <div class="col-sm">
+                </div>
+                <div class="col-sm">
+                    <button id="btn-eliminarall" class="btn-eliminarall" onclick=EliminarAllBusqueda(true)>Eliminar Busquedas</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="msgModal" class="msgModal">
+        <div id="msgFlex" class="msgFlex">
+            <div class="contendor-msgModal">    
+                <div class="cab-msgModal msgFlex">
+                    <h3>A L A R M A</h3> 
+                    <span id="msgCerrar" class="msgCerrar">&times;</span> 
+                </div>
+                <div id="body-msgModal" class="body-msgModal">
+                    <p class="pmsgModal" id="mensgModal">Lorem ipsum dolor sit amet consectetur adipisicing. </p>
+                </div>
+                <div id="pie-msgModal" class="pie-msgModal">
+                    <h4> Avise al CPD</h4>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="imgModal" class="imgModal">
+        <div id="imgFlex" class="imgFlex">
+            <div id="contenedor-imgModal" class="contenedor-imgModal">
+                <div id="cab-imgModal" class="cab-imgModal imgFlex">
+                    <div id="imgCerrar" class="imgCerrar">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                            <path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm0 10.293l5.293-5.293.707.707-5.293 5.293 5.293 5.293-.707.707-5.293-5.293-5.293 5.293-.707-.707 5.293-5.293-5.293-5.293.707-.707 5.293 5.293z"></path>
+                        </svg>    
+                    </div>
+                </div>
+                <div id="body-imgModal" class="body-imgModal">
+                    <div id="fila-imgModal" class="row fila-centrada">
+                        <div id="img-imgModal" class="col-md col-centrada">
+                        </div>
+                        <div id="datos_imgModal" class="col-md col-justicada">
+                        </div>
+                
+                    </div>
+                </div>
+                <div id="pie-imgModal" class="pie-imgModal">
+                    <div id="punt-imgModal" class="punt-imgModal"></div>
+                    <div  id="favor-imgModal" class="favor-imgModal" onclick=AddFavorito(this)>
+                            <svg  width="40px" height="40px" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181"></path>
+                            </svg>
+                    </div>
+                    <div id="img-eliminaricon" class="img-eliminaricon" onclick=Eliminar1Busqueda(this)>
+                            <svg width="20pt" height="20pt" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M 14 20 L 5.898438 20 C 4.25 20 2.949219 18.648438 2.949219 17.050781 L 2.949219 8 C 2.949219 7.699219 3.148438 7.5 3.449219 7.5 C 3.75 7.5 3.949219 7.699219 3.949219 8 L 3.949219 17.050781 C 3.949219 18.148438 4.851562 19 5.898438 19 L 14 19 C 15.101562 19 15.949219 18.101562 15.949219 17.050781 L 15.949219 8 C 15.949219 7.699219 16.148438 7.5 16.449219 7.5 C 16.75 7.5 16.949219 7.699219 16.949219 8 L 16.949219 17.050781 C 16.949219 18.648438 15.601562 20 14 20 Z M 14 20 "></path>
+                                        <path d="M 16.648438 2.449219 L 12.851562 2.449219 C 12.601562 1.050781 11.398438 0 9.949219 0 C 8.5 0 7.300781 1.050781 7.050781 2.449219 L 3.25 2.449219 C 2.101562 2.449219 1.199219 3.351562 1.199219 4.5 C 1.199219 5.648438 2.101562 6.5 3.25 6.5 L 16.699219 6.5 C 17.851562 6.5 18.75 5.601562 18.75 4.449219 C 18.75 3.300781 17.800781 2.449219 16.648438 2.449219 Z M 9.949219 1 C 10.851562 1 11.601562 1.601562 11.800781 2.449219 L 8.050781 2.449219 C 8.300781 1.601562 9.050781 1 9.949219 1 Z M 16.648438 5.5 L 3.25 5.5 C 2.699219 5.5 2.199219 5.050781 2.199219 4.449219 C 2.199219 3.898438 2.648438 3.398438 3.25 3.398438 L 16.699219 3.398438 C 17.25 3.398438 17.75 3.851562 17.75 4.449219 C 17.699219 5.050781 17.25 5.5 16.648438 5.5 Z M 16.648438 5.5 "></path>
+                                        <path d="M 6.449219 17.550781 C 6.148438 17.550781 5.949219 17.351562 5.949219 17.050781 L 5.949219 8.699219 C 5.949219 8.398438 6.148438 8.199219 6.449219 8.199219 C 6.75 8.199219 6.949219 8.398438 6.949219 8.699219 L 6.949219 17.050781 C 6.949219 17.300781 6.699219 17.550781 6.449219 17.550781 Z M 6.449219 17.550781 "></path>
+                                        <path d="M 13.449219 17.550781 C 13.148438 17.550781 12.949219 17.351562 12.949219 17.050781 L 12.949219 8.699219 C 12.949219 8.398438 13.148438 8.199219 13.449219 8.199219 C 13.75 8.199219 13.949219 8.398438 13.949219 8.699219 L 13.949219 17.050781 C 13.949219 17.300781 13.699219 17.550781 13.449219 17.550781 Z M 13.449219 17.550781 "></path>
+                                        <path d="M 9.949219 17.550781 C 9.648438 17.550781 9.449219 17.351562 9.449219 17.050781 L 9.449219 8.699219 C 9.449219 8.398438 9.648438 8.199219 9.949219 8.199219 C 10.25 8.199219 10.449219 8.398438 10.449219 8.699219 L 10.449219 17.050781 C 10.449219 17.300781 10.199219 17.550781 9.949219 17.550781 Z M 9.949219 17.550781 "></path>
+                            </svg>
+                    </div>
+                   
+                </div> 
+            </div>
+        </div>
+    </div>
+    <div id="contenedor_favor" class="contenedor_favor">
+            <h2 id="favoritos"></h2>    
+            <div id="ficha_favor" class="ficha_favor"></div>
+            <div id="fichafavor_pie" class="fichafavor_pie">
+                <div class="row">
+                    <div class="col-sm">   
+                    </div>
+                    <div class="col-sm">
+                    </div>
+                    <div class="col-sm">
+                        <button id="btn-eliminaral2" class="btn-eliminarall" onclick=EliminarAllBusqueda(false)>Eliminar Favoritos</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script src="js/gestor.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>   
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery.scrollUp.js"></script>
+    <script>
+        /* Añade el boton arriba */
+        $(function(){
+            $.scrollUp({
+                scrollName: 'scrollUp',      // Id de los elementos
+                scrollDistance: 600,         // Distancia desde arriba o abajo antes de mostrar el elemento en px
+                scrollFrom: 'top',           // 'top' or 'bottom' (arriba/abajo)
+                scrollSpeed: 500,            // Velocidad del Scrool (ms)
+                easingType: 'linear',        // Tipo de desplazamiento (ver http://easings.net/)
+                animation: 'slide',           // Fade, slide, none
+                animationSpeed: 800,         // Velocidad de la Animación (ms)
+                scrollTrigger: false,        // Establecer un elemento de activación personalizado. Puede ser una cadena HTML o un objeto jQuery
+                scrollTarget: false,         // Establecer un elemento de destino personalizado para desplazarse. Puede ser elemento o numero
+                scrollTitle: false,         // Establezca un enlace <a> personalizado si es necesario.
+                scrollImg: true,            // Establecera  true para usar una imagen 
+                zIndex: 4,
+                activeOverlay: false   // Configure el color CSS para mostrar el punto activo de desplazamiento hacia arriba, por ejemplo, '# 00FFFF'
+            });
+
+        });
+    </script>
+</body>
+</html>

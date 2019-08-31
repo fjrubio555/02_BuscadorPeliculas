@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/gestor.js"></script>
+    <!-- <script>
+            window.onload = function (){
+                var boton = document.getElementById("botonbuscar");
+                /*var peliculaAbuscar = document.getElementById("peliABuscar").value;
+                var url = "http://www.omdbapi.com/?apikey=17e6747a&s=" + peliculaAbuscar;*/
+                boton.onclick = function () {
+                    cargarBusqueda();
+                }
+            }
+        </script>-->
+    <link rel="stylesheet" href="css/principal.css">
+    <title>Buscador Películas</title>
+</head>
+<body>
+    <header class="cabecera contenedor">
+        <div class="mivideo">
+            <video src="video/cabeceras.mp4" autoplay="true" loop="true" muted="muted"></video>
+        </div>
+        <div class="cab_cortina"></div>
+        <div class="cab_contenedor">
+            <div class="buscar_contenedor">
+                <h1>Busca la mejor información de películas y series.</h1>
+                <form role="search" method="GET" onsubmit="cargarBusqueda('s=');">
+                    <input id="peliABuscar" name="peliABuscar" required="required" placeholder="Buscar pelicula o serie"
+                        autocapitalize="none" type="search">
+                    <input id="botonbuscar" class="botonbuscar" value=" " type="submit">
+                </form>
+                <div class="contenedor_sugerencias">
+                    <p id="sugerencias"> Sugerencias: Vengadores, Capitana Marvel, Spider-Man, Aladin, Dumbo, Star Wars,
+                        más</p>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <div id="contenedor_pelis" class="contenedor_pelis">
+        <h2>Películas, series o poster</h2>
+        <div class="ficha_pelis">
+            <img class="poster_listado" src="https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg">
+            <div class="cortinilla cortinillaAbajo">
+                <div class="puntuacion">Puntuacion</div>
+                <div class="masinfo">
+                    <svg class="circulomas" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke-width="7.5"></circle>
+                        <line x1="32.5" y1="50" x2="67.5" y2="50" stroke-width="5"></line>
+                        <line x1="50" y1="32.5" x2="50" y2="67.5" stroke-width="5"></line>
+                    </svg>
+                </div>
+                <div class="favorito">
+                    <svg class="iconfavor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

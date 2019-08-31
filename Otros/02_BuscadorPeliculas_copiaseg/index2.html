@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/gestor.js"></script>
+   <!-- <script>
+            window.onload = function (){
+                var boton = document.getElementById("botonbuscar");
+                /*var peliculaAbuscar = document.getElementById("peliABuscar").value;
+                var url = "http://www.omdbapi.com/?apikey=17e6747a&s=" + peliculaAbuscar;*/
+                boton.onclick = function () {
+                    cargarBusqueda();
+                }
+            }
+        </script>-->
+    <link rel="stylesheet" href="css/principal.css">
+    <title>Buscador Películas</title>
+</head>
+<body>
+    <header class="cabecera contenedor">
+        <div class="mivideo">
+            <video src="video/cabeceras.mp4" autoplay="true" loop="true" muted="muted"></video>
+        </div>
+        <div class="cab-cortina"></div>
+        <div class="cab-contenedor">   
+            <div class="buscar-contenedor">
+                    <h1>Busca la mejor información de películas y series.</h1>
+                    <form role="search" method="GET" onsubmit="cargarBusqueda();">
+                        <input id="peliABuscar" name="peliABuscar"  required="required" placeholder="Buscar pelicula o serie" autocapitalize="none" type="search">
+                        <input id="botonbuscar" class="botonbuscar" value=" " type="submit">   
+                    </form>
+                    <div class="contenedor-sugerencias">
+                        <p id="sugerencias"> Sugerencias: Vengadores, Capitana Marvel, Spider-Man, Aladin, Dumbo, Star Wars, más</p>
+                    </div>    
+            </div>
+        </div>
+
+    </header>
+    <div class="etiqueta_pelis">
+            <h2>Películas, series o poster</h2>
+    </div>
+    <div class="contenedor-pelis"> 
+        <h2>Películas, series o poster</h2> 
+        <div class="ficha-pelis">
+            <img class="poster-listado" src="https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg">
+            <div class="cortinilla cortinillaAbajo"></div>
+        </div>
+        
+    </div>    
+</body>
+</html>
